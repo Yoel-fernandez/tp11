@@ -62,7 +62,14 @@ func main() {
 		fmt.Printf("Producto: %s\nCantidad: %d\nSubtotal: %.2f\n\n", product.name, quantity, subtotal)
 	}
 
-	// Imprimir el ticket
+        // calculo de impuestos
+        iva := total *0.21
+        iibb := total *0.03
+
+       // sumar impuestos al total 
+       total +=iva+iibb
+
+	// Imprimir el ticket	
 	fmt.Println("\nTicket:")
 	fmt.Println("----------------------------------------")
 	for code, quantity := range quantities {
@@ -71,9 +78,11 @@ func main() {
 		fmt.Printf("%s\t%s\t%d\t%.2f\t%.2f\n", code, product.name, quantity, product.price, subtotal)
 	}
 	fmt.Println("----------------------------------------")
-	fmt.Printf("Total del ticket: %.2f\n", total)
-	fmt.Println("Gracias por su compra!")
-}
+	fmt.Printf("IVA: %.2f\n", iva)
+	fmt.Printf("IIBB: %.2f\n", iibb)
+        fmt.Printf("Total del ticket: %.2f\n",total)
+        fmt.Println("Gracias por su compra!")
+       }
 
 type Product struct {
 	code  string
